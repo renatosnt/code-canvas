@@ -1,0 +1,18 @@
+.node {
+  height: 2rem;
+  width: 2rem;
+  outline: 1px solid rgb(175, 216, 248);
+  display: inline-block;
+}
+
+.node:hover {
+  background-color: aliceblue;
+}
+
+.start {
+  background-color: green;
+}
+
+.finish {
+  background-color: tomato;
+}

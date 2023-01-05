@@ -1,7 +1,12 @@
 import React from "react";
+import Grid from "./Grid";
 
 function App() {
-  return <div>MeuApp</div>;
+  return (
+    <>
+      <Grid />
+    </>
+  );
 }
 
 export default App;
