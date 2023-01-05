@@ -1,6 +1,7 @@
 import React from "react";
 import Node from "./Node";
 import "./Grid.css";
+import Menu from "./Menu";
 
 const Grid = () => {
   const [gridSize, setGridSize] = React.useState([15, 25]);
@@ -10,7 +11,12 @@ const Grid = () => {
   const [isMoving, setIsMoving] = React.useState(false);
   const [movingNode, setMovingNode] = React.useState(null);
 
-  const [grid, setGrid] = React.useState(gridConstructor());
+  const [grid, setGrid] = React.useState([]);
+
+  React.useEffect(() => {
+    const newGrid = gridConstructor();
+    setGrid(newGrid);
+  }, []);
 
   function nodeConstructor(row, col) {
     const node = {
@@ -81,25 +87,44 @@ const Grid = () => {
     }
   }
 
+  function clearGrid() {
+    console.log("clear grid");
+    const newGrid = grid;
+    newGrid.map((row) =>
+      row.map((node) => {
+        console.log(node);
+        node.isWall = false;
+      })
+    );
+    setGrid(newGrid);
+  }
+
   //
   return (
-    <table className="grid">
-      <tbody>
-        {grid.map((row, i) => (
-          <tr key={i}>
-            {row.map((node) => (
-              <Node
-                {...node}
-                key={node.col}
-                onMouseDown={(event) => startDrawing(event, node.row, node.col)}
-                onMouseUp={(event) => finishDrawing(event, node.row, node.col)}
-                onMouseEnter={(event) => draw(event, node.row, node.col)}
-              />
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <>
+      <Menu clearGrid={clearGrid} />
+      <table className="grid">
+        <tbody>
+          {grid.map((row, i) => (
+            <tr key={i}>
+              {row.map((node) => (
+                <Node
+                  {...node}
+                  key={node.col}
+                  onMouseDown={(event) =>
+                    startDrawing(event, node.row, node.col)
+                  }
+                  onMouseUp={(event) =>
+                    finishDrawing(event, node.row, node.col)
+                  }
+                  onMouseEnter={(event) => draw(event, node.row, node.col)}
+                />
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 };
 

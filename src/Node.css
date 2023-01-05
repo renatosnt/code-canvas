@@ -1,8 +1,11 @@
 .node {
-  height: 2rem;
-  width: 2rem;
-  outline: 1px solid rgb(175, 216, 248);
+  height: 2.5rem;
+  width: 2.5rem;
+  margin: 1.5px 3px;
+  background-color: #dddddd;
+  border-radius: 4px;
   display: inline-block;
+  box-shadow: 0 2px 3px -2px rgba(169, 169, 169, 0.5);
 }
 
 .node:hover {
@@ -10,25 +13,28 @@
 }
 
 .start {
-  background-color: green;
+  background-color: #2a0c42;
+  border-radius: 50%;
 }
 
 .start:hover {
-  background-color: green;
+  background-color: #2a0c42;
 }
 
 .finish {
-  background-color: tomato;
+  background-color: #2a0c42;
+  border-radius: 50%;
 }
 
 .finish:hover {
-  background-color: tomato;
+  background-color: #2a0c42;
 }
 
 .wall {
-  background-color: black;
+  /* background: radial-gradient(50% 50% at 50% 50%, #9e36f0 0%, #8e1fe6 100%); */
+  background: linear-gradient(180deg, #9e36f0 0%, #8e1fe6 100%);
 }
 
 .wall:hover {
-  background-color: black;
+  background-color: #181d31;
 }
