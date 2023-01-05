@@ -1,8 +1,19 @@
 import React from "react";
 import "./Node.css";
 
-const Node = ({ row, col, isStart, isFinish, isWall, mouseIsOver }) => {
-  // adicionar estilos diferentes para nodes de inicio e de fim
+const Node = ({
+  row,
+  col,
+  isStart,
+  isFinish,
+  isWall,
+  isPressed,
+  onMouseUp,
+  onMouseEnter,
+}) => {
+  // TODO
+  // Desenhar paredes: quando o mouse é clicado, começa a desenhar, quando o mouse é levantado, para de desenhar
+
   const additionalClass = isStart
     ? "start"
     : isFinish
@@ -11,7 +22,14 @@ const Node = ({ row, col, isStart, isFinish, isWall, mouseIsOver }) => {
     ? "wall"
     : "";
 
-  return <td className={`node ${additionalClass}`}></td>;
+  return (
+    <td
+      className={`node ${additionalClass}`}
+      onMouseDown={isPressed}
+      onMouseUp={onMouseUp}
+      onMouseEnter={onMouseEnter}
+    ></td>
+  );
 };
 
 export default Node;
