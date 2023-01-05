@@ -7,7 +7,7 @@ const Node = ({
   isStart,
   isFinish,
   isWall,
-  isPressed,
+  onMouseDown,
   onMouseUp,
   onMouseEnter,
 }) => {
@@ -25,7 +25,7 @@ const Node = ({
   return (
     <td
       className={`node ${additionalClass}`}
-      onMouseDown={isPressed}
+      onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
       onMouseEnter={onMouseEnter}
     ></td>

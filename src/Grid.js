@@ -7,7 +7,6 @@ const Grid = () => {
   const [start, setStart] = React.useState([5, 0]);
   const [finish, setFinish] = React.useState([5, 25]);
   const [isDrawing, setIsDrawing] = React.useState(false);
-
   const [grid, setGrid] = React.useState(gridConstructor());
 
   function nodeConstructor(row, col) {
@@ -36,41 +35,26 @@ const Grid = () => {
     return initialGrid;
   }
 
-  function isStartOrFinish(row, col) {
-    return (
-      (row === start[0] && col === start[1]) ||
-      (row === finish[0] && col === finish[1])
-    );
+  function startDrawing(event) {
+    event.preventDefault();
+    setIsDrawing(true);
   }
 
-  function handleIsPressed(row, col) {
-    if (isStartOrFinish(row, col)) {
-      // TODO se é start ou finish, move eles de lugar
-      // é start ou finish, logo, movimenta eles
-    } else {
-      setIsDrawing(true);
-    }
+  function finishDrawing(event) {
+    event.preventDefault();
+    setIsDrawing(false);
   }
 
-  function handleMouseUp(row, col) {
-    console.log(row, col);
-    if (isStartOrFinish(row, col)) {
-      // TODO se é start ou finish, coloca eles no lugar
-      // é start ou finish, logo, movimenta eles
-    } else {
-      setIsDrawing(false);
-    }
-  }
-
-  function handleMouseEnter(row, col) {
-    if (isDrawing && !isStartOrFinish(row, col)) {
+  function draw({ target }, row, col) {
+    if (isDrawing && !grid[row][col].isStart && !grid[row][col].isFinish) {
+      target.className += " wall";
       const newGrid = grid;
       newGrid[row][col].isWall = true;
       setGrid(newGrid);
-      // TODO o estado do grid precisa ser atualizado sempre que uma nova parede é adicionada
     }
   }
 
+  //
   return (
     <table className="grid">
       <tbody>
@@ -80,9 +64,9 @@ const Grid = () => {
               <Node
                 {...node}
                 key={node.col}
-                isPressed={() => handleIsPressed(node.row, node.col)} // desenhar ou mover nós
-                onMouseUp={() => handleMouseUp(node.row, node.col)} // parar de desenhar ou colocar nós
-                onMouseEnter={() => handleMouseEnter(node.row, node.col)}
+                onMouseDown={(event) => startDrawing(event)}
+                onMouseUp={(event) => finishDrawing(event)}
+                onMouseEnter={(event) => draw(event, node.row, node.col)}
               />
             ))}
           </tr>
