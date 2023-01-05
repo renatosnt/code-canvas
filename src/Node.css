@@ -13,10 +13,22 @@
   background-color: green;
 }
 
+.start:hover {
+  background-color: green;
+}
+
 .finish {
   background-color: tomato;
 }
 
+.finish:hover {
+  background-color: tomato;
+}
+
 .wall {
+  background-color: black;
+}
+
+.wall:hover {
   background-color: black;
 }

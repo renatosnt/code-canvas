@@ -7,6 +7,9 @@ const Grid = () => {
   const [start, setStart] = React.useState([5, 0]);
   const [finish, setFinish] = React.useState([5, 25]);
   const [isDrawing, setIsDrawing] = React.useState(false);
+  const [isMoving, setIsMoving] = React.useState(false);
+  const [movingNode, setMovingNode] = React.useState(null);
+
   const [grid, setGrid] = React.useState(gridConstructor());
 
   function nodeConstructor(row, col) {
@@ -35,14 +38,38 @@ const Grid = () => {
     return initialGrid;
   }
 
-  function startDrawing(event) {
+  function startDrawing(event, row, col) {
     event.preventDefault();
-    setIsDrawing(true);
+    if (!grid[row][col].isStart && !grid[row][col].isFinish) {
+      setIsDrawing(true);
+    } else {
+      if (grid[row][col].isStart) {
+        grid[row][col].isStart = false;
+        setMovingNode("start");
+      } else {
+        grid[row][col].isFinish = false;
+        setMovingNode("finish");
+      }
+      setIsMoving(true);
+    }
   }
 
-  function finishDrawing(event) {
+  function finishDrawing(event, row, col) {
     event.preventDefault();
-    setIsDrawing(false);
+    if (isDrawing) {
+      setIsDrawing(false);
+    }
+    if (isMoving) {
+      const newGrid = grid;
+      if (movingNode === "start") {
+        newGrid[row][col].isStart = true;
+      } else {
+        newGrid[row][col].isFinish = true;
+      }
+      setGrid(newGrid);
+      setMovingNode(null);
+      setIsMoving(false);
+    }
   }
 
   function draw({ target }, row, col) {
@@ -64,8 +91,8 @@ const Grid = () => {
               <Node
                 {...node}
                 key={node.col}
-                onMouseDown={(event) => startDrawing(event)}
-                onMouseUp={(event) => finishDrawing(event)}
+                onMouseDown={(event) => startDrawing(event, node.row, node.col)}
+                onMouseUp={(event) => finishDrawing(event, node.row, node.col)}
                 onMouseEnter={(event) => draw(event, node.row, node.col)}
               />
             ))}
