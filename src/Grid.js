@@ -67,10 +67,10 @@ const Grid = () => {
       setIsDrawing(false);
     }
     if (isMoving) {
-      const newGrid = grid;
+      const newGrid = grid.slice();
       if (movingNode === "start") {
         newGrid[row][col].isStart = true;
-      } else {
+      } else if (movingNode === "finish") {
         newGrid[row][col].isFinish = true;
       }
       setGrid(newGrid);
@@ -81,8 +81,7 @@ const Grid = () => {
 
   function draw({ target }, row, col) {
     if (isDrawing && !grid[row][col].isStart && !grid[row][col].isFinish) {
-      target.className += " wall";
-      const newGrid = grid;
+      const newGrid = grid.slice();
       newGrid[row][col].isWall = true;
       setGrid(newGrid);
     }
