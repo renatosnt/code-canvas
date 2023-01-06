@@ -50,6 +50,7 @@ const Grid = () => {
     if (!grid[row][col].isStart && !grid[row][col].isFinish) {
       setIsDrawing(true);
     } else {
+      console.log(event.target.parentNode.parentNode);
       if (grid[row][col].isStart) {
         grid[row][col].isStart = false;
         setMovingNode("start");
@@ -102,7 +103,7 @@ const Grid = () => {
   return (
     <>
       <Menu clearGrid={clearGrid} />
-      <table className="grid">
+      <table className={isMoving ? "grid grid-on-moving" : "grid"}>
         <tbody>
           {grid.map((row, i) => (
             <tr key={i}>

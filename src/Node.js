@@ -11,9 +11,6 @@ const Node = ({
   onMouseUp,
   onMouseEnter,
 }) => {
-  // TODO
-  // Desenhar paredes: quando o mouse é clicado, começa a desenhar, quando o mouse é levantado, para de desenhar
-
   const additionalClass = isStart
     ? "start"
     : isFinish
