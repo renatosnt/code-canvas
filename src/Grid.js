@@ -11,6 +11,7 @@ const Grid = () => {
   const [isMoving, setIsMoving] = React.useState(false);
   const [movingNode, setMovingNode] = React.useState(null);
 
+  const [count, setCount] = React.useState(0);
   const [grid, setGrid] = React.useState([]);
 
   React.useEffect(() => {
@@ -88,11 +89,10 @@ const Grid = () => {
   }
 
   function clearGrid() {
-    console.log("clear grid");
-    const newGrid = grid;
+    const newGrid = grid.slice();
+
     newGrid.map((row) =>
       row.map((node) => {
-        console.log(node);
         node.isWall = false;
       })
     );
