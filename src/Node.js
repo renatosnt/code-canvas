@@ -11,6 +11,7 @@ const Node = ({
   onMouseDown,
   onMouseUp,
   onMouseEnter,
+  onClick,
 }) => {
   const additionalClass = isStart
     ? "start"
@@ -27,6 +28,7 @@ const Node = ({
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
       onMouseEnter={onMouseEnter}
+      onClick={onClick}
     >
       {row} {col}
     </td>

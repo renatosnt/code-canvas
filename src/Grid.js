@@ -81,8 +81,11 @@ const Grid = () => {
     }
   }
 
-  function draw({ target }, row, col) {
-    if (isDrawing && !grid[row][col].isStart && !grid[row][col].isFinish) {
+  function draw(event, row, col) {
+    if (
+      (isDrawing && !grid[row][col].isStart && !grid[row][col].isFinish) ||
+      event.type === "click"
+    ) {
       const newGrid = grid.slice();
       newGrid[row][col].isWall = true;
       setGrid(newGrid);
@@ -168,6 +171,7 @@ const Grid = () => {
                     finishDrawing(event, node.row, node.col)
                   }
                   onMouseEnter={(event) => draw(event, node.row, node.col)}
+                  onClick={(event) => draw(event, node.row, node.col)}
                 />
               ))}
             </tr>
