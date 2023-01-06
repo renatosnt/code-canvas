@@ -1,6 +1,6 @@
 import React from "react";
 import "./Menu.css";
-const Menu = ({ clearGrid }) => {
+const Menu = ({ clearGrid, runAlgorithm }) => {
   return (
     <div className="menu">
       <button>Clear Grid</button>
@@ -10,7 +10,7 @@ const Menu = ({ clearGrid }) => {
         <option>DFS</option>
         <option>BFS</option>
       </select>
-      <button>Run</button>
+      <button onClick={() => runAlgorithm("dfs")}>Run</button>
       <button>Help</button>
     </div>
   );
