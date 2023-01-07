@@ -45,6 +45,7 @@ const Grid = () => {
 
   function startDrawing(event, row, col) {
     event.preventDefault();
+    if (isRunning) return;
     if (!grid[row][col].isStart && !grid[row][col].isFinish) {
       setIsDrawing(true);
     } else {
@@ -93,6 +94,7 @@ const Grid = () => {
   }
 
   function clearWalls() {
+    if (isRunning) return;
     const newGrid = grid.slice();
 
     newGrid.map((row) =>
@@ -111,6 +113,7 @@ const Grid = () => {
       }
       setTimeout(() => {
         const curr = totalPath[i];
+
         // troca o estilo de acordo com o id
         const nodeClassName = document.getElementById(
           `node-${curr.row}-${curr.col}`
@@ -128,6 +131,7 @@ const Grid = () => {
   }
 
   function runAlgorithm(algorithm) {
+    if (isRunning) return;
     setIsRunning(true);
     switch (algorithm) {
       case "dfs":
@@ -148,6 +152,29 @@ const Grid = () => {
     runAnimation(path);
   }
 
+  function resetGrid() {
+    setIsRunning(false);
+    setGrid(gridConstructor());
+    var highestTimeoutId = setTimeout(";");
+    for (var i = 0; i < highestTimeoutId; i++) {
+      clearTimeout(i);
+    }
+    grid.map((row) => {
+      row.map((node) => {
+        const nodeElement = document.getElementById(
+          `node-${node.row}-${node.col}`
+        );
+        console.log(nodeElement.className);
+        if (
+          nodeElement.className !== "node start" &&
+          nodeElement.className !== "node finish"
+        ) {
+          nodeElement.className = "node";
+        }
+      });
+    });
+  }
+
   React.useEffect(() => {
     const newGrid = gridConstructor();
     setGrid(newGrid);
@@ -155,7 +182,11 @@ const Grid = () => {
 
   return (
     <>
-      <Menu clearWalls={clearWalls} runAlgorithm={runAlgorithm} />
+      <Menu
+        clearWalls={clearWalls}
+        resetGrid={resetGrid}
+        runAlgorithm={runAlgorithm}
+      />
       {isRunning && <h1 style={{ color: "black" }}>Rodando</h1>}
       <table className={isMoving ? "grid grid-on-moving" : "grid"}>
         <tbody>
