@@ -7,5 +7,8 @@
 
 .grid-on-moving {
   border-style: dotted;
-  border-color: rgba(111, 111, 111, 1);
+  border-width: 5px;
+  cursor: grabbing;
+
+  border-color: rgba(246, 150, 37, 1);
 }

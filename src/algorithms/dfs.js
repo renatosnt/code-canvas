@@ -10,6 +10,7 @@ export function dfs(grid, start, finish) {
     const [i, j] = [curr.row, curr.col];
 
     if (curr === finish) {
+      path.push(finish);
       return path;
     }
 

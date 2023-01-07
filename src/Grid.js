@@ -6,8 +6,8 @@ import { dfs } from "./algorithms/dfs";
 import { bfs } from "./algorithms/bfs";
 const Grid = () => {
   const [gridSize, setGridSize] = React.useState([15, 35]);
-  const [startCoordinates, setStartCoordinates] = React.useState([4, 0]);
-  const [finishCoordinates, setFinishCoordinates] = React.useState([0, 4]);
+  const [startCoordinates, setStartCoordinates] = React.useState([7, 1]);
+  const [finishCoordinates, setFinishCoordinates] = React.useState([7, 34]);
 
   const [isRunning, setIsRunning] = React.useState(false);
   const [isDrawing, setIsDrawing] = React.useState(false);
@@ -49,7 +49,6 @@ const Grid = () => {
     if (!grid[row][col].isStart && !grid[row][col].isFinish) {
       setIsDrawing(true);
     } else {
-      console.log(event.target.parentNode.parentNode);
       if (grid[row][col].isStart) {
         grid[row][col].isStart = false;
         setMovingNode("start");
@@ -82,6 +81,7 @@ const Grid = () => {
   }
 
   function draw(event, row, col) {
+    if (isRunning) return;
     if (
       (isDrawing || event.type === "click") &&
       !grid[row][col].isStart &&
@@ -113,16 +113,13 @@ const Grid = () => {
       }
       setTimeout(() => {
         const curr = totalPath[i];
-
+        console.log(curr);
         // troca o estilo de acordo com o id
         const nodeClassName = document.getElementById(
           `node-${curr.row}-${curr.col}`
         ).className;
 
-        if (
-          nodeClassName !== "node node-start" &&
-          nodeClassName !== "node node-finish"
-        ) {
+        if (nodeClassName !== "node start" && nodeClassName !== "node finish") {
           document.getElementById(`node-${curr.row}-${curr.col}`).className =
             "node node-visited";
         }
@@ -148,7 +145,6 @@ const Grid = () => {
       default:
         break;
     }
-    console.log(path);
     runAnimation(path);
   }
 
@@ -164,7 +160,6 @@ const Grid = () => {
         const nodeElement = document.getElementById(
           `node-${node.row}-${node.col}`
         );
-        console.log(nodeElement.className);
         if (
           nodeElement.className !== "node start" &&
           nodeElement.className !== "node finish"
@@ -187,7 +182,7 @@ const Grid = () => {
         resetGrid={resetGrid}
         runAlgorithm={runAlgorithm}
       />
-      {isRunning && <h1 style={{ color: "black" }}>Rodando</h1>}
+
       <table className={isMoving ? "grid grid-on-moving" : "grid"}>
         <tbody>
           {grid.map((row, i) => (
