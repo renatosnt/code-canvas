@@ -124,7 +124,7 @@ const Grid = () => {
           document.getElementById(`node-${curr.row}-${curr.col}`).className =
             "node node-visited";
         }
-      }, 100 * i);
+      }, 25 * i);
     }
   }
 
@@ -142,6 +142,11 @@ const Grid = () => {
       case "dijkstra":
         break;
       case "bfs":
+        var path = bfs(
+          grid,
+          grid[startCoordinates[0]][startCoordinates[1]],
+          grid[finishCoordinates[0]][finishCoordinates[1]]
+        );
         break;
       default:
         break;
