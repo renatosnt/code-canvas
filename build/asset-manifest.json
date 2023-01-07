@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/code-canvas/static/css/main.ff48af97.css",
+    "main.js": "/code-canvas/static/js/main.c92ec899.js",
+    "index.html": "/code-canvas/index.html",
+    "main.ff48af97.css.map": "/code-canvas/static/css/main.ff48af97.css.map",
+    "main.c92ec899.js.map": "/code-canvas/static/js/main.c92ec899.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ff48af97.css",
+    "static/js/main.c92ec899.js"
+  ]
+}

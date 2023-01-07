@@ -6,23 +6,49 @@
 }
 
 .menu button {
-  padding: 16px 24px;
-  font-weight: 700;
+  padding: 8px 16px;
   border-radius: 4px;
   border: none;
   text-transform: uppercase;
-  color: #06310f;
-
-  background: linear-gradient(180deg, #509760 0%, #216830 100%);
-  box-shadow: 0 2px 2px -1px rgba(33, 104, 48, 0.5);
-  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.menu button:hover {
-  background: #216830;
+.reset-btn {
+  background-color: #d7b746;
+  color: #302604;
+}
+
+.reset-btn:hover {
+  background-color: #b9971e;
+}
+
+.clear-btn {
+  background-color: #d7b746;
+  color: #302604;
+}
+
+.clear-btn:hover {
+  background-color: #b9971e;
+}
+
+.run-btn {
+  background-color: #50ad4e;
+  color: #032e02;
+}
+
+.run-btn:hover {
+  background-color: #238d21;
+}
+
+.help-btn {
+  background-color: #b94f4f;
+  color: #410404;
+}
+
+.help-btn:hover {
+  background-color: #9f2525;
 }
 
 .menu select {
-  padding: 16px 32px;
-  border-radius: 4px;
 }
