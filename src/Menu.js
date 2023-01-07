@@ -1,10 +1,12 @@
 import React from "react";
 import "./Menu.css";
-const Menu = ({ clearGrid, runAlgorithm }) => {
+
+const Menu = ({ clearWalls, runAlgorithm }) => {
+  function clearGrid() {}
   return (
     <div className="menu">
-      <button>Clear Grid</button>
-      <button onClick={clearGrid}>Clear Walls</button>
+      <button onClick={clearGrid}>Clear Grid</button>
+      <button onClick={clearWalls}>Clear Walls</button>
       <select>
         <option>Dijkstra</option>
         <option>DFS</option>

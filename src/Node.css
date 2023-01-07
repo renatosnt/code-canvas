@@ -23,7 +23,7 @@
 
 .finish {
   background-color: wheat;
-  border-radius: 50%;
+  border-radius: 100%;
 }
 
 .finish:hover {
@@ -32,41 +32,60 @@
 
 .wall {
   /* background: radial-gradient(50% 50% at 50% 50%, #9e36f0 0%, #8e1fe6 100%); */
-  background: linear-gradient(180deg, #9e36f0 0%, #8e1fe6 100%);
+  animation-name: fallingAnimation;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+
+@keyframes fallingAnimation {
+  0% {
+    transform: scale(1.1);
+    opacity: 0.7;
+    box-shadow: 0px 2px 2px 0 black;
+    background: linear-gradient(180deg, #6535ca 0%, #33098b 100%);
+  }
+
+  75% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    /* box-shadow: 0px 1px 3px 0 black; */
+    background: linear-gradient(180deg, #6535ca 0%, #33098b 100%);
+  }
 }
 
 .wall:hover {
   background-color: #181d31;
 }
+
 .node-visited {
-  animation-name: visitedAnimation;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0;
-  animation-direction: alternate;
-  animation-iteration-count: 1;
+  animation-name: node-visited;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
-  animation-play-state: running;
+  animation-timing-function: ease-in;
 }
 
-@keyframes visitedAnimation {
+@keyframes node-visited {
   0% {
-    transform: scale(0.3);
-    background-color: rgba(0, 0, 66, 0.75);
+    background-color: #ca359a;
     border-radius: 100%;
+    transform: scale(0.1);
   }
-
   50% {
-    background-color: rgba(217, 17, 187, 0.75);
+    background-color: #359aca;
   }
 
   75% {
-    transform: scale(1.2);
-    background-color: rgba(34, 17, 217, 0.75);
+    border-radius: 4px;
+    transform: scale(1.02);
+    box-shadow: 0px 2px 4px 0 black;
   }
 
   100% {
+    background: linear-gradient(180deg, #9aca35 0%, #5f8c01 100%);
     transform: scale(1);
-    background-color: rgba(0, 218, 69, 0.75);
   }
 }

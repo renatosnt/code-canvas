@@ -8,9 +8,8 @@ const Grid = () => {
   const [gridSize, setGridSize] = React.useState([15, 35]);
   const [startCoordinates, setStartCoordinates] = React.useState([4, 0]);
   const [finishCoordinates, setFinishCoordinates] = React.useState([0, 4]);
-  const [startNode, setStartNode] = React.useState(null);
-  const [finishNode, setFinishNode] = React.useState(null);
 
+  const [isRunning, setIsRunning] = React.useState(false);
   const [isDrawing, setIsDrawing] = React.useState(false);
   const [isMoving, setIsMoving] = React.useState(false);
   const [movingNode, setMovingNode] = React.useState(null);
@@ -83,8 +82,9 @@ const Grid = () => {
 
   function draw(event, row, col) {
     if (
-      (isDrawing && !grid[row][col].isStart && !grid[row][col].isFinish) ||
-      event.type === "click"
+      (isDrawing || event.type === "click") &&
+      !grid[row][col].isStart &&
+      !grid[row][col].isFinish
     ) {
       const newGrid = grid.slice();
       newGrid[row][col].isWall = true;
@@ -92,7 +92,7 @@ const Grid = () => {
     }
   }
 
-  function clearGrid() {
+  function clearWalls() {
     const newGrid = grid.slice();
 
     newGrid.map((row) =>
@@ -128,6 +128,7 @@ const Grid = () => {
   }
 
   function runAlgorithm(algorithm) {
+    setIsRunning(true);
     switch (algorithm) {
       case "dfs":
         var path = dfs(
@@ -154,8 +155,8 @@ const Grid = () => {
 
   return (
     <>
-      <Menu clearGrid={clearGrid} runAlgorithm={runAlgorithm} />
-
+      <Menu clearWalls={clearWalls} runAlgorithm={runAlgorithm} />
+      {isRunning && <h1 style={{ color: "black" }}>Rodando</h1>}
       <table className={isMoving ? "grid grid-on-moving" : "grid"}>
         <tbody>
           {grid.map((row, i) => (

@@ -20,10 +20,6 @@ export function dfs(grid, start, finish) {
     }
     // para todos adjacentes ao curr, não visitados, adicione-os a stack
 
-    // esquerda
-    if (j - 1 >= 0 && !grid[i][j - 1].isVisited && !grid[i][j - 1].isWall) {
-      stack.push(grid[i][j - 1]);
-    }
     // baixo
     if (
       i + 1 < numRows &&
@@ -33,6 +29,15 @@ export function dfs(grid, start, finish) {
       stack.push(grid[i + 1][j]);
     }
 
+    // esquerda
+    if (j - 1 >= 0 && !grid[i][j - 1].isVisited && !grid[i][j - 1].isWall) {
+      stack.push(grid[i][j - 1]);
+    }
+    // cima
+    if (i - 1 >= 0 && !grid[i - 1][j].isVisited && !grid[i - 1][j].isWall) {
+      stack.push(grid[i - 1][j]);
+    }
+
     // direita
     if (
       j + 1 < numCols &&
@@ -40,10 +45,6 @@ export function dfs(grid, start, finish) {
       !grid[i][j + 1].isWall
     ) {
       stack.push(grid[i][j + 1]);
-    }
-    // cima
-    if (i - 1 >= 0 && !grid[i - 1][j].isVisited && !grid[i - 1][j].isWall) {
-      stack.push(grid[i - 1][j]);
     }
   }
   return [];

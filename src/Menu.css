@@ -18,6 +18,10 @@
   font-size: 1rem;
 }
 
+.menu button:hover {
+  background: #216830;
+}
+
 .menu select {
   padding: 16px 32px;
   border-radius: 4px;

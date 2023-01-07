@@ -29,9 +29,7 @@ const Node = ({
       onMouseUp={onMouseUp}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
-    >
-      {row} {col}
-    </td>
+    ></td>
   );
 };
 
