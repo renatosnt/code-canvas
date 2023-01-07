@@ -2,7 +2,7 @@ import React from "react";
 import "./Menu.css";
 
 const Menu = ({ clearWalls, resetGrid, runAlgorithm }) => {
-  const [algorithm, setAlgorithm] = React.useState("bfs");
+  const [algorithm, setAlgorithm] = React.useState("dfs");
 
   function selectAlgorithm() {}
 

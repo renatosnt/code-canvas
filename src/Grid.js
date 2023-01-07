@@ -8,6 +8,7 @@ const Grid = () => {
   const [gridSize, setGridSize] = React.useState([15, 35]);
   const [startCoordinates, setStartCoordinates] = React.useState([7, 1]);
   const [finishCoordinates, setFinishCoordinates] = React.useState([7, 34]);
+  const [warningState, setWarningState] = React.useState(false);
 
   const [isRunning, setIsRunning] = React.useState(false);
   const [isDrawing, setIsDrawing] = React.useState(false);
@@ -149,6 +150,7 @@ const Grid = () => {
   }
 
   function resetGrid() {
+    setWarningState(false);
     setIsRunning(false);
     setGrid(gridConstructor());
     var highestTimeoutId = setTimeout(";");
@@ -170,6 +172,10 @@ const Grid = () => {
     });
   }
 
+  function showWarning() {
+    if (isRunning) setWarningState(true);
+  }
+
   React.useEffect(() => {
     const newGrid = gridConstructor();
     setGrid(newGrid);
@@ -182,8 +188,11 @@ const Grid = () => {
         resetGrid={resetGrid}
         runAlgorithm={runAlgorithm}
       />
-
-      <table className={isMoving ? "grid grid-on-moving" : "grid"}>
+      {warningState && <span>Resete o Grid para modificá-lo.</span>}
+      <table
+        className={isMoving ? "grid grid-on-moving" : "grid"}
+        onClick={showWarning}
+      >
         <tbody>
           {grid.map((row, i) => (
             <tr key={i}>
