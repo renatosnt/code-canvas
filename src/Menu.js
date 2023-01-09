@@ -1,7 +1,13 @@
 import React from "react";
 import "./Menu.css";
 
-const Menu = ({ clearWalls, resetGrid, runAlgorithm }) => {
+const Menu = ({
+  clearWalls,
+  resetGrid,
+  runAlgorithm,
+  openHelp,
+  setOpenHelp,
+}) => {
   const [algorithm, setAlgorithm] = React.useState("dfs");
 
   function selectAlgorithm() {}
@@ -26,7 +32,9 @@ const Menu = ({ clearWalls, resetGrid, runAlgorithm }) => {
       <button className="run-btn" onClick={() => runAlgorithm(algorithm)}>
         Run
       </button>
-      <button className="help-btn">Help</button>
+      <button className="help-btn" onClick={() => setOpenHelp(!openHelp)}>
+        Help
+      </button>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import "./Grid.css";
 import Menu from "./Menu";
 import { dfs } from "./algorithms/dfs";
 import { bfs } from "./algorithms/bfs";
+import Help from "./Help";
 const Grid = () => {
   const [gridSize, setGridSize] = React.useState([15, 35]);
   const [startCoordinates, setStartCoordinates] = React.useState([7, 1]);
@@ -14,6 +15,7 @@ const Grid = () => {
   const [isDrawing, setIsDrawing] = React.useState(false);
   const [isMoving, setIsMoving] = React.useState(false);
   const [movingNode, setMovingNode] = React.useState(null);
+  const [openHelp, setOpenHelp] = React.useState(false);
 
   const [grid, setGrid] = React.useState([]);
 
@@ -192,7 +194,10 @@ const Grid = () => {
         clearWalls={clearWalls}
         resetGrid={resetGrid}
         runAlgorithm={runAlgorithm}
+        openHelp={openHelp}
+        setOpenHelp={setOpenHelp}
       />
+      <Help open={openHelp} setOpenHelp={setOpenHelp} />
       {warningState && <span>Resete o Grid para modificá-lo.</span>}
       <table
         className={isMoving ? "grid grid-on-moving" : "grid"}
