@@ -5,8 +5,12 @@ import Menu from "./Menu";
 import { dfs } from "./algorithms/dfs";
 import { bfs } from "./algorithms/bfs";
 import Help from "./Help";
+import Footer from "./Footer";
+
 const Grid = () => {
-  const [gridSize, setGridSize] = React.useState([15, 35]);
+  const [rows, cols] = [15, 35];
+  console.log(rows, cols);
+  const [gridSize, setGridSize] = React.useState([rows, cols]);
   const [startCoordinates, setStartCoordinates] = React.useState([7, 1]);
   const [finishCoordinates, setFinishCoordinates] = React.useState([7, 34]);
   const [warningState, setWarningState] = React.useState(false);
@@ -27,6 +31,7 @@ const Grid = () => {
       isFinish: row === finishCoordinates[0] && col === finishCoordinates[1],
       isWall: false,
       isVisited: false,
+      previous: null,
     };
     return node;
   }
@@ -108,14 +113,34 @@ const Grid = () => {
     setGrid(newGrid);
   }
 
-  function runAnimation(totalPath) {
-    totalPath.shift();
-    for (let i = 0; i <= totalPath.length; i++) {
-      if (i === totalPath.length) {
-        // animar shortest path
+  function runResultingPath(resultingPath) {
+    for (let i = 0; i <= resultingPath.length; i++) {
+      setTimeout(() => {
+        const curr = resultingPath[i];
+        // troca o estilo de acordo com o id
+        const nodeClassName = document.getElementById(
+          `node-${curr.row}-${curr.col}`
+        ).className;
+
+        if (nodeClassName !== "node start" && nodeClassName !== "node finish") {
+          document.getElementById(`node-${curr.row}-${curr.col}`).className =
+            "node node-result";
+        }
+      }, 25 * i);
+    }
+  }
+
+  function runAnimation(visitedNodes, resultingPath) {
+    visitedNodes.shift();
+    for (let i = 0; i <= visitedNodes.length; i++) {
+      if (i === visitedNodes.length) {
+        // animar resultingPath
+        setTimeout(() => {
+          runResultingPath(resultingPath);
+        }, 25 * i);
       }
       setTimeout(() => {
-        const curr = totalPath[i];
+        const curr = visitedNodes[i];
         console.log(curr);
         // troca o estilo de acordo com o id
         const nodeClassName = document.getElementById(
@@ -130,35 +155,45 @@ const Grid = () => {
     }
   }
 
+  function backtrackPath(finish) {
+    const path = [];
+    let curr = finish;
+    console.log(curr);
+    while (curr !== null) {
+      path.unshift(curr);
+      curr = curr.previous;
+    }
+
+    return path;
+  }
+
   function runAlgorithm(algorithm) {
     if (isRunning) return;
     setIsRunning(true);
+    const start = grid[startCoordinates[0]][startCoordinates[1]];
+    const finish = grid[finishCoordinates[0]][finishCoordinates[1]];
+
     switch (algorithm) {
       case "dfs":
-        var path = dfs(
-          grid,
-          grid[startCoordinates[0]][startCoordinates[1]],
-          grid[finishCoordinates[0]][finishCoordinates[1]]
-        );
+        var visitedNodes = dfs(grid, start, finish);
         break;
       case "dijkstra":
         break;
       case "bfs":
-        var path = bfs(
-          grid,
-          grid[startCoordinates[0]][startCoordinates[1]],
-          grid[finishCoordinates[0]][finishCoordinates[1]]
-        );
+        var visitedNodes = bfs(grid, start, finish);
         break;
       default:
         break;
     }
-    runAnimation(path);
+
+    const path = backtrackPath(finish);
+    runAnimation(visitedNodes, path);
   }
 
   function resetGrid() {
     setWarningState(false);
     setIsRunning(false);
+
     setGrid(gridConstructor());
     var highestTimeoutId = setTimeout(";");
     for (var i = 0; i < highestTimeoutId; i++) {
@@ -186,6 +221,7 @@ const Grid = () => {
   React.useEffect(() => {
     const newGrid = gridConstructor();
     setGrid(newGrid);
+    setOpenHelp(true);
   }, []);
 
   return (
@@ -196,9 +232,9 @@ const Grid = () => {
         runAlgorithm={runAlgorithm}
         openHelp={openHelp}
         setOpenHelp={setOpenHelp}
+        warningState={warningState}
       />
       <Help open={openHelp} setOpenHelp={setOpenHelp} />
-      {warningState && <span>Resete o Grid para modificá-lo.</span>}
       <table
         className={isMoving ? "grid grid-on-moving" : "grid"}
         onClick={showWarning}
@@ -206,10 +242,10 @@ const Grid = () => {
         <tbody>
           {grid.map((row, i) => (
             <tr key={i}>
-              {row.map((node) => (
+              {row.map((node, idx) => (
                 <Node
                   {...node}
-                  key={node.col}
+                  key={idx}
                   onMouseDown={(event) =>
                     startDrawing(event, node.row, node.col)
                   }
@@ -224,6 +260,7 @@ const Grid = () => {
           ))}
         </tbody>
       </table>
+      <Footer />
     </>
   );
 };

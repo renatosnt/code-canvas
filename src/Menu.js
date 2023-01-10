@@ -7,14 +7,16 @@ const Menu = ({
   runAlgorithm,
   openHelp,
   setOpenHelp,
+  warningState,
 }) => {
-  const [algorithm, setAlgorithm] = React.useState("dfs");
-
-  function selectAlgorithm() {}
+  const [algorithm, setAlgorithm] = React.useState("bfs");
 
   return (
     <div className="menu">
-      <button className="reset-btn" onClick={resetGrid}>
+      <button
+        className={warningState ? "reset-btn warning" : "reset-btn"}
+        onClick={resetGrid}
+      >
         Reset Grid
       </button>
       <button className="clear-btn" onClick={clearWalls}>
@@ -25,9 +27,9 @@ const Menu = ({
         value={algorithm}
         onChange={({ target }) => setAlgorithm(target.value)}
       >
-        <option value="dfs">DFS</option>
         <option value="bfs">BFS</option>
-        <option value="dijkstra">Dijkstra</option>
+        <option value="dfs">DFS</option>
+        {/* <option value="dijkstra">Dijkstra</option> */}
       </select>
       <button className="run-btn" onClick={() => runAlgorithm(algorithm)}>
         Run

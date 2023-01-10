@@ -6,9 +6,10 @@
 }
 
 .grid-on-moving {
-  border-style: dotted;
-  border-width: 5px;
+  /* border-style: dotted; */
+  outline: 4px dashed rgba(246, 150, 37, 1);
+  /* border-width: 5px; */
   cursor: grabbing;
 
-  border-color: rgba(246, 150, 37, 1);
+  /* border-color: rgba(246, 150, 37, 1); */
 }

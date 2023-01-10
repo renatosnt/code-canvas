@@ -4,7 +4,8 @@ export function dfs(grid, start, finish) {
   const path = [];
 
   stack.push(start);
-
+  console.log("Tipo");
+  console.log(typeof grid);
   while (stack.length) {
     const curr = stack.pop();
     const [i, j] = [curr.row, curr.col];
@@ -15,38 +16,43 @@ export function dfs(grid, start, finish) {
     }
 
     if (!curr.isVisited && !curr.isWall) {
-      grid[i][j].isVisited = true;
-      path.push(grid[i][j]);
+      curr.isVisited = true;
+      path.push(curr);
       console.log(i, j);
-    }
-    // para todos adjacentes ao curr, não visitados, adicione-os a stack
+      // para todos adjacentes ao curr, não visitados, adicione-os a stack
 
-    // baixo
-    if (
-      i + 1 < numRows &&
-      !grid[i + 1][j].isVisited &&
-      !grid[i + 1][j].isWall
-    ) {
-      stack.push(grid[i + 1][j]);
-    }
+      // baixo
+      if (
+        i + 1 < numRows &&
+        !grid[i + 1][j].isVisited &&
+        !grid[i + 1][j].isWall
+      ) {
+        grid[i + 1][j].previous = curr;
+        stack.push(grid[i + 1][j]);
+      }
 
-    // esquerda
-    if (j - 1 >= 0 && !grid[i][j - 1].isVisited && !grid[i][j - 1].isWall) {
-      stack.push(grid[i][j - 1]);
-    }
-    // cima
-    if (i - 1 >= 0 && !grid[i - 1][j].isVisited && !grid[i - 1][j].isWall) {
-      stack.push(grid[i - 1][j]);
-    }
+      // esquerda
+      if (j - 1 >= 0 && !grid[i][j - 1].isVisited && !grid[i][j - 1].isWall) {
+        grid[i][j - 1].previous = curr;
+        stack.push(grid[i][j - 1]);
+      }
+      // cima
+      if (i - 1 >= 0 && !grid[i - 1][j].isVisited && !grid[i - 1][j].isWall) {
+        grid[i - 1][j].previous = curr;
+        stack.push(grid[i - 1][j]);
+      }
 
-    // direita
-    if (
-      j + 1 < numCols &&
-      !grid[i][j + 1].isVisited &&
-      !grid[i][j + 1].isWall
-    ) {
-      stack.push(grid[i][j + 1]);
+      // direita
+      if (
+        j + 1 < numCols &&
+        !grid[i][j + 1].isVisited &&
+        !grid[i][j + 1].isWall
+      ) {
+        grid[i][j + 1].previous = curr;
+        stack.push(grid[i][j + 1]);
+      }
     }
   }
+
   return [];
 }

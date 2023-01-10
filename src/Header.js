@@ -4,7 +4,7 @@ import "./Header.css";
 const Header = () => {
   return (
     <header className="header">
-      <h1 className="title">Code Canvas</h1>
+      <h1 className="title">Pathfinding Visualizer</h1>
     </header>
   );
 };

@@ -1,13 +1,18 @@
 {
   "files": {
-    "main.css": "/code-canvas/static/css/main.e2d4fbc9.css",
-    "main.js": "/code-canvas/static/js/main.78d0f4b6.js",
+    "main.css": "/code-canvas/static/css/main.b8853c0c.css",
+    "main.js": "/code-canvas/static/js/main.45272aa5.js",
+    "static/media/wall.gif": "/code-canvas/static/media/wall.8929e4710319c3ebaf64.gif",
+    "static/media/move.gif": "/code-canvas/static/media/move.68a36cf7574cfbae7240.gif",
+    "static/media/select.gif": "/code-canvas/static/media/select.d1eafd6b3b211e0da024.gif",
+    "static/media/start.svg": "/code-canvas/static/media/start.be6a0666facb95cf1bb2.svg",
     "index.html": "/code-canvas/index.html",
-    "main.e2d4fbc9.css.map": "/code-canvas/static/css/main.e2d4fbc9.css.map",
-    "main.78d0f4b6.js.map": "/code-canvas/static/js/main.78d0f4b6.js.map"
+    "static/media/finish.svg": "/code-canvas/static/media/finish.b00ef0bbdd2c323568e2.svg",
+    "main.b8853c0c.css.map": "/code-canvas/static/css/main.b8853c0c.css.map",
+    "main.45272aa5.js.map": "/code-canvas/static/js/main.45272aa5.js.map"
   },
   "entrypoints": [
-    "static/css/main.e2d4fbc9.css",
-    "static/js/main.78d0f4b6.js"
+    "static/css/main.b8853c0c.css",
+    "static/js/main.45272aa5.js"
   ]
 }

@@ -1,6 +1,6 @@
 .node {
-  height: 2rem;
-  width: 2rem;
+  height: 32px;
+  width: 32px;
   margin: 1px 2px;
   background-color: #d9d9d9;
   border-radius: 4px;
@@ -13,29 +13,27 @@
 }
 
 .start {
-  background-color: #00764b;
-  border-radius: 50%;
+  background: url("../public/start.svg");
+  background-size: cover;
 }
 
 .start:hover {
-  background-color: #2a0c42;
   cursor: grab;
 }
 
 .finish {
-  background-color: #760000;
-  cursor: grab;
-  border-radius: 100%;
+  background: url("../public/finish.svg");
+  background-size: cover;
 }
 
 .finish:hover {
-  background-color: #2a0c42;
+  cursor: grab;
 }
 
 .wall {
   /* background: radial-gradient(50% 50% at 50% 50%, #9e36f0 0%, #8e1fe6 100%); */
   animation-name: fallingAnimation;
-  animation-duration: 0.3s;
+  animation-duration: 0.1s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in;
 }
@@ -45,7 +43,7 @@
     transform: scale(1.1);
     opacity: 0.7;
     box-shadow: 0px 2px 2px 0 black;
-    background: linear-gradient(180deg, #6535ca 0%, #33098b 100%);
+    background: linear-gradient(180deg, #415674 0%, #11243f 100%);
   }
 
   75% {
@@ -55,7 +53,7 @@
     transform: scale(1);
     opacity: 1;
     /* box-shadow: 0px 1px 3px 0 black; */
-    background: linear-gradient(180deg, #6535ca 0%, #33098b 100%);
+    background: linear-gradient(180deg, #415674 0%, #11243f 100%);
   }
 }
 
@@ -87,7 +85,26 @@
   }
 
   100% {
-    background: linear-gradient(180deg, #9aca35 0%, #5f8c01 100%);
+    background: linear-gradient(180deg, #e9dd16 0%, #c7bb00 100%);
+    transform: scale(1);
+  }
+}
+.node-result {
+  animation-name: node-result;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+}
+
+@keyframes node-result {
+  0% {
+    background-color: black;
+    border-radius: 100%;
+    transform: scale(0.1);
+  }
+
+  100% {
+    background: linear-gradient(180deg, #803838 0%, #581616 100%);
     transform: scale(1);
   }
 }

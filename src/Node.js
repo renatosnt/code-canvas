@@ -8,6 +8,7 @@ const Node = ({
   isFinish,
   isWall,
   isVisited,
+  previous,
   onMouseDown,
   onMouseUp,
   onMouseEnter,

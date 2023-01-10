@@ -51,4 +51,11 @@
 }
 
 .menu select {
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+.warning {
+  box-shadow: 0 0 20px 5px #9f2525;
+  transition: box-shadow 1s;
 }

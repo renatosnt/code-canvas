@@ -1,47 +1,49 @@
-export function bfs(grid, startNode, finishNode) {
-  const path = [];
-  let stack = [startNode];
-  while (stack.length) {
-    const currentNode = stack.shift();
-    if (currentNode === finishNode) return path;
+export function bfs(grid, start, finish) {
+  const [numRows, numCols] = [grid.length, grid[0].length];
 
+  const totalPath = [];
+  const queue = [];
+  queue.push(start);
+  while (queue.length) {
+    const curr = queue.shift();
+    if (curr === finish) return totalPath;
+
+    if (curr.isWall || curr.isVisited) continue;
+
+    curr.isVisited = true;
+    totalPath.push(curr);
+    const [i, j] = [curr.row, curr.col];
+    // para todos adjacentes ao curr, não visitados, adicione-os a stack
+
+    // baixo
     if (
-      !currentNode.isWall &&
-      (currentNode.isStart || !currentNode.isVisited)
+      i + 1 < numRows &&
+      !grid[i + 1][j].isVisited &&
+      !grid[i + 1][j].isWall
     ) {
-      currentNode.isVisited = true;
-      path.push(currentNode);
-      const { col, row } = currentNode;
-      let nextNode;
-      if (row > 0) {
-        nextNode = grid[row - 1][col];
-        if (!nextNode.isVisited) {
-          nextNode.previousNode = currentNode;
-          stack.push(nextNode);
-        }
-      }
-      if (row < grid.length - 1) {
-        nextNode = grid[row + 1][col];
-        if (!nextNode.isVisited) {
-          nextNode.previousNode = currentNode;
-          stack.push(nextNode);
-        }
-      }
-      if (col > 0) {
-        nextNode = grid[row][col - 1];
-        if (!nextNode.isVisited) {
-          nextNode.previousNode = currentNode;
-          stack.push(nextNode);
-        }
-      }
-      if (col < grid[0].length - 1) {
-        nextNode = grid[row][col + 1];
-        if (!nextNode.isVisited) {
-          nextNode.previousNode = currentNode;
-          stack.push(nextNode);
-        }
-      }
+      grid[i + 1][j].previous = curr;
+      queue.push(grid[i + 1][j]);
+    }
+
+    // esquerda
+    if (j - 1 >= 0 && !grid[i][j - 1].isVisited && !grid[i][j - 1].isWall) {
+      grid[i][j - 1].previous = curr;
+      queue.push(grid[i][j - 1]);
+    }
+    // cima
+    if (i - 1 >= 0 && !grid[i - 1][j].isVisited && !grid[i - 1][j].isWall) {
+      grid[i - 1][j].previous = curr;
+      queue.push(grid[i - 1][j]);
+    }
+
+    // direita
+    if (
+      j + 1 < numCols &&
+      !grid[i][j + 1].isVisited &&
+      !grid[i][j + 1].isWall
+    ) {
+      grid[i][j + 1].previous = curr;
+      queue.push(grid[i][j + 1]);
     }
   }
-  // return path;
 }

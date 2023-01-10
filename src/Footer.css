@@ -1,0 +1,48 @@
+.footer {
+  margin: 0 auto;
+  display: flex;
+  margin-top: 20px;
+  gap: 40px;
+  justify-content: center;
+}
+
+.footer span {
+  text-transform: uppercase;
+  color: #686868;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.div-sub {
+  border: none;
+  height: 32px;
+  width: 32px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+#wall {
+  background: linear-gradient(180deg, #415674 0%, #11243f 100%);
+}
+
+#visited-nodes {
+  background: linear-gradient(180deg, #e9dd16 0%, #c7bb00 100%);
+}
+
+#resulting-path {
+  background: linear-gradient(180deg, #803838 0%, #581616 100%);
+}
+
+#origin {
+  background: url("../public/start.svg");
+  background-size: cover;
+}
+
+#destination {
+  border: none;
+  background: url("../public/finish.svg");
+  background-size: cover;
+}
