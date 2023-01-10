@@ -46,4 +46,6 @@ export function bfs(grid, start, finish) {
       queue.push(grid[i][j + 1]);
     }
   }
+
+  return totalPath;
 }

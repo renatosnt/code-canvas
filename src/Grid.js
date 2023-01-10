@@ -8,8 +8,7 @@ import Help from "./Help";
 import Footer from "./Footer";
 
 const Grid = () => {
-  const [rows, cols] = [15, 35];
-  console.log(rows, cols);
+  const [rows, cols] = [14, 35];
   const [gridSize, setGridSize] = React.useState([rows, cols]);
   const [startCoordinates, setStartCoordinates] = React.useState([7, 1]);
   const [finishCoordinates, setFinishCoordinates] = React.useState([7, 34]);
@@ -141,7 +140,6 @@ const Grid = () => {
       }
       setTimeout(() => {
         const curr = visitedNodes[i];
-        console.log(curr);
         // troca o estilo de acordo com o id
         const nodeClassName = document.getElementById(
           `node-${curr.row}-${curr.col}`
@@ -158,7 +156,6 @@ const Grid = () => {
   function backtrackPath(finish) {
     const path = [];
     let curr = finish;
-    console.log(curr);
     while (curr !== null) {
       path.unshift(curr);
       curr = curr.previous;

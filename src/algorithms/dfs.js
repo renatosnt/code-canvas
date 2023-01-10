@@ -4,8 +4,6 @@ export function dfs(grid, start, finish) {
   const path = [];
 
   stack.push(start);
-  console.log("Tipo");
-  console.log(typeof grid);
   while (stack.length) {
     const curr = stack.pop();
     const [i, j] = [curr.row, curr.col];
@@ -18,7 +16,6 @@ export function dfs(grid, start, finish) {
     if (!curr.isVisited && !curr.isWall) {
       curr.isVisited = true;
       path.push(curr);
-      console.log(i, j);
       // para todos adjacentes ao curr, não visitados, adicione-os a stack
 
       // baixo
@@ -54,5 +51,5 @@ export function dfs(grid, start, finish) {
     }
   }
 
-  return [];
+  return path;
 }
