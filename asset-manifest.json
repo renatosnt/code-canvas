@@ -1,18 +1,19 @@
 {
   "files": {
-    "main.css": "/pathfinding-visualizer/static/css/main.908d1323.css",
-    "main.js": "/pathfinding-visualizer/static/js/main.357de38b.js",
+    "main.css": "/pathfinding-visualizer/static/css/main.4b8f197b.css",
+    "main.js": "/pathfinding-visualizer/static/js/main.051ed593.js",
     "static/media/wall.gif": "/pathfinding-visualizer/static/media/wall.8929e4710319c3ebaf64.gif",
     "static/media/move.gif": "/pathfinding-visualizer/static/media/move.68a36cf7574cfbae7240.gif",
     "static/media/select.gif": "/pathfinding-visualizer/static/media/select.d1eafd6b3b211e0da024.gif",
+    "static/media/logo.png": "/pathfinding-visualizer/static/media/logo.6ae5aee2f4c1441c926c.png",
     "static/media/start.svg": "/pathfinding-visualizer/static/media/start.be6a0666facb95cf1bb2.svg",
     "index.html": "/pathfinding-visualizer/index.html",
     "static/media/finish.svg": "/pathfinding-visualizer/static/media/finish.b00ef0bbdd2c323568e2.svg",
-    "main.908d1323.css.map": "/pathfinding-visualizer/static/css/main.908d1323.css.map",
-    "main.357de38b.js.map": "/pathfinding-visualizer/static/js/main.357de38b.js.map"
+    "main.4b8f197b.css.map": "/pathfinding-visualizer/static/css/main.4b8f197b.css.map",
+    "main.051ed593.js.map": "/pathfinding-visualizer/static/js/main.051ed593.js.map"
   },
   "entrypoints": [
-    "static/css/main.908d1323.css",
-    "static/js/main.357de38b.js"
+    "static/css/main.4b8f197b.css",
+    "static/js/main.051ed593.js"
   ]
 }
