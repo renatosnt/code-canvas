@@ -8,7 +8,7 @@ import Help from "./Help";
 import Footer from "./Footer";
 
 const Grid = () => {
-  const [rows, cols] = [14, 35];
+  const [rows, cols] = [17, 50];
   const [gridSize, setGridSize] = React.useState([rows, cols]);
   const [startCoordinates, setStartCoordinates] = React.useState([7, 1]);
   const [finishCoordinates, setFinishCoordinates] = React.useState([7, 34]);
